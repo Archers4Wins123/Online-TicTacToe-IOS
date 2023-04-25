@@ -31,9 +31,8 @@ class TicTacToeModel : ObservableObject {
     }
     
     func resetGame() {
-        squares = [Square]()
-        for _ in 0...8 {
-            squares.append(Square(status: .empty))
+        for i in 0...8 {
+            squares[i].squareStatus = .empty
         }
      }
     
@@ -106,7 +105,7 @@ class TicTacToeModel : ObservableObject {
     private func moveAI() {
         var index = Int.random(in: 0...8)
         while makeMove(index: index, player: .visitor) == false && gameOver.1 == false {
-            index = Int.random(in: 0...0)
+            index = Int.random(in: 0...8)
         }
     }
     func makeMove(index: Int, player: SquareStatus) -> Bool {
@@ -131,7 +130,7 @@ struct SquareView : View {
             Text(self.dataSource.squareStatus == .home ? "X" : self.dataSource.squareStatus == .visitor ? "O" : " ")
                 .font(.largeTitle)
                 .bold()
-                .foregroundColor(.black).frame(width: 40, height: 40)
+                .foregroundColor(.black).frame(width: 50, height: 50)
         }).background(Color.gray.opacity(0.3).cornerRadius(10)).frame(width: 70, height: 70).padding(10)
     }
 }
@@ -140,6 +139,7 @@ struct ContentView: View {
     @State var gameOver : Bool = false
     
     func buttonAction(_ index : Int) {
+        //print("Clicked \(index)")
         _ = self.ticTacToeModel.makeMove(index: index, player: .home)
         self.gameOver = self.ticTacToeModel.gameOver.1
     }
