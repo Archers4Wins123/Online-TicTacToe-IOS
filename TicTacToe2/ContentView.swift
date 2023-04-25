@@ -130,8 +130,9 @@ struct SquareView : View {
             Text(self.dataSource.squareStatus == .home ? "X" : self.dataSource.squareStatus == .visitor ? "O" : " ")
                 .font(.largeTitle)
                 .bold()
-                .foregroundColor(.black).frame(width: 50, height: 50)
-        }).background(Color.gray.opacity(0.3).cornerRadius(10)).frame(width: 70, height: 70).padding(10)
+                .foregroundColor(.black).frame(width: 70, height: 70, alignment: .center)
+                .background(Color.gray.opacity(0.3).cornerRadius(10)).padding(4)
+        })
     }
 }
 struct ContentView: View {
