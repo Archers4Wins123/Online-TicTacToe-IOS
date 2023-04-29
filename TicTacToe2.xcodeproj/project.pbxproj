@@ -14,6 +14,8 @@
 		B675DB7229F743F600CCAE03 /* TicTacToe2Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B675DB7129F743F600CCAE03 /* TicTacToe2Tests.swift */; };
 		B675DB7C29F743F600CCAE03 /* TicTacToe2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B675DB7B29F743F600CCAE03 /* TicTacToe2UITests.swift */; };
 		B675DB7E29F743F600CCAE03 /* TicTacToe2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B675DB7D29F743F600CCAE03 /* TicTacToe2UITestsLaunchTests.swift */; };
+		B675DB8C29F7909B00CCAE03 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = B675DB8B29F7909B00CCAE03 /* SocketIO */; };
+		B675DB8E29F793A700CCAE03 /* SocketHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B675DB8D29F793A700CCAE03 /* SocketHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B641D22729F8D071009D3D89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B675DB5D29F743F500CCAE03 /* TicTacToe2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B675DB6029F743F500CCAE03 /* TicTacToe2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToe2App.swift; sourceTree = "<group>"; };
 		B675DB6229F743F500CCAE03 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -44,6 +47,7 @@
 		B675DB7729F743F600CCAE03 /* TicTacToe2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TicTacToe2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B675DB7B29F743F600CCAE03 /* TicTacToe2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToe2UITests.swift; sourceTree = "<group>"; };
 		B675DB7D29F743F600CCAE03 /* TicTacToe2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToe2UITestsLaunchTests.swift; sourceTree = "<group>"; };
+		B675DB8D29F793A700CCAE03 /* SocketHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B675DB8C29F7909B00CCAE03 /* SocketIO in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +99,8 @@
 		B675DB5F29F743F500CCAE03 /* TicTacToe2 */ = {
 			isa = PBXGroup;
 			children = (
+				B675DB8D29F793A700CCAE03 /* SocketHelper.swift */,
+				B641D22729F8D071009D3D89 /* Info.plist */,
 				B675DB6029F743F500CCAE03 /* TicTacToe2App.swift */,
 				B675DB6229F743F500CCAE03 /* ContentView.swift */,
 				B675DB6429F743F600CCAE03 /* Assets.xcassets */,
@@ -143,6 +150,9 @@
 			dependencies = (
 			);
 			name = TicTacToe2;
+			packageProductDependencies = (
+				B675DB8B29F7909B00CCAE03 /* SocketIO */,
+			);
 			productName = TicTacToe2;
 			productReference = B675DB5D29F743F500CCAE03 /* TicTacToe2.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +225,9 @@
 				Base,
 			);
 			mainGroup = B675DB5429F743F500CCAE03;
+			packageReferences = (
+				B675DB8A29F7909B00CCAE03 /* XCRemoteSwiftPackageReference "socket" */,
+			);
 			productRefGroup = B675DB5E29F743F500CCAE03 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -257,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B675DB8E29F793A700CCAE03 /* SocketHelper.swift in Sources */,
 				B675DB6329F743F500CCAE03 /* ContentView.swift in Sources */,
 				B675DB6129F743F500CCAE03 /* TicTacToe2App.swift in Sources */,
 			);
@@ -419,6 +433,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"TicTacToe2/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TicTacToe2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -447,6 +462,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"TicTacToe2/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = TicTacToe2/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -577,6 +593,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B675DB8A29F7909B00CCAE03 /* XCRemoteSwiftPackageReference "socket" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/socketio/socket.io-client-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B675DB8B29F7909B00CCAE03 /* SocketIO */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B675DB8A29F7909B00CCAE03 /* XCRemoteSwiftPackageReference "socket" */;
+			productName = SocketIO;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B675DB5529F743F500CCAE03 /* Project object */;
 }

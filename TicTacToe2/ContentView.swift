@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import SocketIO
+
 
 enum SquareStatus {
     case empty
@@ -35,17 +37,6 @@ class TicTacToeModel : ObservableObject {
             squares[i].squareStatus = .empty
         }
      }
-    
-    /*func makeMove(index: Int, player: SquareStatus) -> Bool {
-        if squares[index].squareStatus == .empty {
-            squares[index].squareStatus = player
-            if player == .home {
-                //MOVE AI
-            }
-            return true
-        }
-        return false
-    }*/
     
     private func checkIndexes(_ indexes : [Int]) -> SquareStatus? {
         var homeCounter : Int = 0
@@ -170,7 +161,15 @@ struct ContentView: View {
                     Alert.Button.destructive(Text("Ok"), action: {
                 self.ticTacToeModel.resetGame()
             }))
-        })
+        }).onAppear {
+            SocketHelper.shared.connectSocket { (success) in
+                print("Connection result = \(success)")
+            }
+            SocketHelper.Events.search.listen { (result) in
+                print(result)
+            }
+            SocketHelper.Events.search.emit(params: ["name": "start"])
+        }
     }
 }
 
