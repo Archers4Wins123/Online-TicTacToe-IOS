@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B6345B2F29FCAAC00025D5D5 /* MakeTurn.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6345B2E29FCAAC00025D5D5 /* MakeTurn.swift */; };
+		B6345B3129FCADA10025D5D5 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6345B3029FCADA10025D5D5 /* GameState.swift */; };
 		B675DB6129F743F500CCAE03 /* TicTacToe2App.swift in Sources */ = {isa = PBXBuildFile; fileRef = B675DB6029F743F500CCAE03 /* TicTacToe2App.swift */; };
 		B675DB6329F743F500CCAE03 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B675DB6229F743F500CCAE03 /* ContentView.swift */; };
 		B675DB6529F743F600CCAE03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B675DB6429F743F600CCAE03 /* Assets.xcassets */; };
@@ -15,7 +17,6 @@
 		B675DB7C29F743F600CCAE03 /* TicTacToe2UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B675DB7B29F743F600CCAE03 /* TicTacToe2UITests.swift */; };
 		B675DB7E29F743F600CCAE03 /* TicTacToe2UITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B675DB7D29F743F600CCAE03 /* TicTacToe2UITestsLaunchTests.swift */; };
 		B675DB8C29F7909B00CCAE03 /* SocketIO in Frameworks */ = {isa = PBXBuildFile; productRef = B675DB8B29F7909B00CCAE03 /* SocketIO */; };
-		B675DB8E29F793A700CCAE03 /* SocketHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B675DB8D29F793A700CCAE03 /* SocketHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B6345B2E29FCAAC00025D5D5 /* MakeTurn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeTurn.swift; sourceTree = "<group>"; };
+		B6345B3029FCADA10025D5D5 /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		B641D22729F8D071009D3D89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B675DB5D29F743F500CCAE03 /* TicTacToe2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B675DB6029F743F500CCAE03 /* TicTacToe2App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToe2App.swift; sourceTree = "<group>"; };
@@ -47,7 +50,6 @@
 		B675DB7729F743F600CCAE03 /* TicTacToe2UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TicTacToe2UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B675DB7B29F743F600CCAE03 /* TicTacToe2UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToe2UITests.swift; sourceTree = "<group>"; };
 		B675DB7D29F743F600CCAE03 /* TicTacToe2UITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToe2UITestsLaunchTests.swift; sourceTree = "<group>"; };
-		B675DB8D29F793A700CCAE03 /* SocketHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +101,8 @@
 		B675DB5F29F743F500CCAE03 /* TicTacToe2 */ = {
 			isa = PBXGroup;
 			children = (
-				B675DB8D29F793A700CCAE03 /* SocketHelper.swift */,
+				B6345B2E29FCAAC00025D5D5 /* MakeTurn.swift */,
+				B6345B3029FCADA10025D5D5 /* GameState.swift */,
 				B641D22729F8D071009D3D89 /* Info.plist */,
 				B675DB6029F743F500CCAE03 /* TicTacToe2App.swift */,
 				B675DB6229F743F500CCAE03 /* ContentView.swift */,
@@ -270,7 +273,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B675DB8E29F793A700CCAE03 /* SocketHelper.swift in Sources */,
+				B6345B2F29FCAAC00025D5D5 /* MakeTurn.swift in Sources */,
+				B6345B3129FCADA10025D5D5 /* GameState.swift in Sources */,
 				B675DB6329F743F500CCAE03 /* ContentView.swift in Sources */,
 				B675DB6129F743F500CCAE03 /* TicTacToe2App.swift in Sources */,
 			);

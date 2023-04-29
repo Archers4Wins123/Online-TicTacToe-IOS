@@ -6,7 +6,8 @@
 //
 
 import SwiftUI
-import SocketIO
+//import SocketIO
+import Starscream
 
 
 enum SquareStatus {
@@ -129,9 +130,18 @@ struct SquareView : View {
 struct ContentView: View {
     @StateObject var ticTacToeModel = TicTacToeModel()
     @State var gameOver : Bool = false
+    @StateObject var socketDelegate = WebSocket2()
     
     func buttonAction(_ index : Int) {
         //print("Clicked \(index)")
+        let makeTurn = MakeTurn(x: index%3, y: Int(index/3))
+        do {
+            let jsonData = try JSONEncoder().encode(makeTurn)
+            let data = try JSONSerialization.data(withJSONObject: "make_turn#\(jsonData)", options: [])
+            socketDelegate.socket.write(data: data)
+        } catch let error {
+            print("Error in sending MakeTurn as JSON\n\(error)")
+        }
         _ = self.ticTacToeModel.makeMove(index: index, player: .home)
         self.gameOver = self.ticTacToeModel.gameOver.1
     }
@@ -142,14 +152,22 @@ struct ContentView: View {
                 .foregroundColor(Color.black.opacity(0.7))
                 .padding(.bottom)
                 .font(.title2)
+            Text("Player \(socketDelegate.gameState.playerAtTurn)'s turn")
+                .bold()
+                .foregroundColor(Color.black.opacity(0.7))
+                .padding(.bottom)
+                .font(.title2)
             ForEach(0 ..< Int(ticTacToeModel.squares.count / 3), content: {
                 row in
                 HStack {
                     ForEach(0 ..< 3, content: {
                         column in
                         let index = row * 3 + column
-                        SquareView(dataSource: ticTacToeModel.squares[index],
+                        let char = socketDelegate.gameState.field[row][column]
+                        let square = Square(status: char=="X" ? .home : (char=="O" ? .visitor : .empty))
+                        SquareView(dataSource: square,
                                    action: {self.buttonAction(index)})
+                        
                     })
                 }
             })
@@ -162,13 +180,54 @@ struct ContentView: View {
                 self.ticTacToeModel.resetGame()
             }))
         }).onAppear {
-            SocketHelper.shared.connectSocket { (success) in
-                print("Connection result = \(success)")
+            var request = URLRequest(url: URL(string: "ws://192.168.0.19:8080/play")!)
+            request.timeoutInterval = 5
+            socketDelegate.connect(request: request)
+        }
+    }
+}
+class WebSocket2: NSObject, WebSocketDelegate, ObservableObject {
+    let decoder = JSONDecoder()
+    func didReceive(event: Starscream.WebSocketEvent, client: Starscream.WebSocket) {
+        print("received: \(event)")
+        switch event {
+        case .connected(let headers):
+            print("websocket is connected: \(headers)")
+        case .disconnected(let reason, let code):
+            print("websocket is disconnected: \(reason) with code: \(code)")
+        case .text(let string):
+            print("Recived text: \(string)")
+            do {
+                gameState = try decoder.decode(GameState.self, from: string.data(using: .utf8)!)
+                print(gameState.playerAtTurn)
+            } catch let error {
+                print("Error in receiving GameState as JSON\n\(error)")
             }
-            SocketHelper.Events.search.listen { (result) in
-                print(result)
-            }
-            SocketHelper.Events.search.emit(params: ["name": "start"])
+        default:
+            break
+        }
+    }
+    
+    var socket: WebSocket!
+
+    @Published var event: WebSocketEvent?
+    @Published var gameState: GameState = GameState(playerAtTurn: "X", field: [[String?]](), winningPlayer: nil, isBoardFull: false, connectedPlayers: [String]())
+    var isConnected: Bool = false
+    let server = WebSocketServer()
+    var token: String = ""
+    func connect(request: URLRequest) {
+        socket = WebSocket(request: request)
+        socket.delegate = self
+        socket.connect()
+    }
+    override init() {
+        super.init()
+        for _ in 0...2 {
+            var row0: [String?] = [String?]()
+            row0.append(nil)
+            row0.append(nil)
+            row0.append(nil)
+            gameState.field.append(row0)
         }
     }
 }
