@@ -137,8 +137,8 @@ struct ContentView: View {
         let makeTurn = MakeTurn(x: index%3, y: Int(index/3))
         do {
             let jsonData = try JSONEncoder().encode(makeTurn)
-            let data = try JSONSerialization.data(withJSONObject: "make_turn#\(jsonData)", options: [])
-            socketDelegate.socket.write(data: data)
+            let jsonString = String(data: jsonData, encoding: .utf8)!
+            socketDelegate.socket.write(string: "make_turn#\(jsonString)")
         } catch let error {
             print("Error in sending MakeTurn as JSON\n\(error)")
         }
