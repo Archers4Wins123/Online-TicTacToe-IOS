@@ -171,10 +171,10 @@ struct ContentView: View {
                     })
                 }
             })
-        }.alert(isPresented: self.$gameOver, content: {
+        }.alert(isPresented: self.$socketDelegate.gameOver, content: {
             Alert(title: Text("Game Over"),
-                  message: Text(self.ticTacToeModel.gameOver.0 != .empty ?
-                                self.ticTacToeModel.gameOver.0 == .home ? "You Win!" : "AI Wins!" : "Nobody Wins"),
+                  message: Text(self.socketDelegate.gameState.winningPlayer != nil ?
+                               "\(self.socketDelegate.gameState.winningPlayer ?? " ") Win!" : "Nobody Wins"),
             dismissButton:
                     Alert.Button.destructive(Text("Ok"), action: {
                 self.ticTacToeModel.resetGame()
@@ -199,6 +199,7 @@ class WebSocket2: NSObject, WebSocketDelegate, ObservableObject {
             print("Recived text: \(string)")
             do {
                 gameState = try decoder.decode(GameState.self, from: string.data(using: .utf8)!)
+                gameOver = gameState.isBoardFull || gameState.winningPlayer != nil
                 print(gameState.playerAtTurn)
             } catch let error {
                 print("Error in receiving GameState as JSON\n\(error)")
@@ -213,6 +214,7 @@ class WebSocket2: NSObject, WebSocketDelegate, ObservableObject {
     @Published var event: WebSocketEvent?
     @Published var gameState: GameState = GameState(playerAtTurn: "X", field: [[String?]](), winningPlayer: nil, isBoardFull: false, connectedPlayers: [String]())
     var isConnected: Bool = false
+    var gameOver: Bool = false
     let server = WebSocketServer()
     var token: String = ""
     func connect(request: URLRequest) {
