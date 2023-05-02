@@ -89,7 +89,7 @@ struct ContentView: View {
                 //self.ticTacToeModel.resetGame()
             }))
         }).onAppear {
-            var request = URLRequest(url: URL(string: "ws://192.168.0.19:8080/play")!)
+            var request = URLRequest(url: URL(string: "ws://192.168.0.40:8080/play")!)
             request.timeoutInterval = 5
             socketDelegate.connect(request: request)
         }
